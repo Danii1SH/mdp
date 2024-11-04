@@ -7,6 +7,7 @@ import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.ValueRange;
 import com.google.auth.http.HttpCredentialsAdapter;
 import com.google.auth.oauth2.GoogleCredentials;
+import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
@@ -14,13 +15,14 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
 
+@Data
 @Service
 public class GoogleSheetsService {
 
-    private Sheets sheetsService;
-    private Drive driveService;
+    private final Sheets sheetsService;
+    private final Drive driveService;
 
-    private static final String SPREADSHEET_ID = "15Vd7Lb6JJOkFyLlsR7nun2c4CYRRRG06";
+    private static final String SPREADSHEET_ID = "1aCPoR9yGAIY4fZx9uMuz8zsNLto5z4I_8dDecW7x06k";
     private static final String APPLICATION_NAME = "mdp";
 
     public GoogleSheetsService() throws IOException, GeneralSecurityException {

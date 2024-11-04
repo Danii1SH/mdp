@@ -14,7 +14,8 @@
 <header class="bg-dark py-3">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -33,20 +34,20 @@
     </div>
 </header>
 
-<main class="container mt-4">
+<main class="container">
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
-                <th>Column 5</th>
+                <th class="tr-text">#</th> <!-- Порядковый номер -->
+                <!-- Заголовки столбцов с буквами -->
+                <th th:each="colIndex : ${#numbers.sequence(0, data[0].size() - 1)}"
+                    th:text="${colIndex + 1} + X"></th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="row : ${data}">
+            <tr th:each="row, rowStat : ${data}" th:if="${row != null && !row.isEmpty()}">
+                <td class="tr-text" th:text="${rowStat.index + 1}"></td> <!-- Порядковый номер строки -->
                 <td th:each="cell : ${row}" th:text="${cell != null ? cell : ''}"></td>
             </tr>
             </tbody>

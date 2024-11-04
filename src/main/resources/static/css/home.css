@@ -1,13 +1,26 @@
-body{
+body {
     background-color: #ddc8b9;
 }
 
-.user_profile, .btn_basket {
+
+.container {
+    width: 100vw;
+    max-width: 100%;
+    padding: 0;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.table-responsive {
+    margin: 20px 0;
+}
+
+.user_profile {
     display: inline-block;
     margin: 0;
 }
 
-.user_profile img, .btn_basket img {
+.user_profile img {
     width: 40px;
     height: auto;
 }
@@ -16,40 +29,13 @@ body{
     margin-right: 10px;
 }
 
-
-.carousel-inner img {
-    height: 400px;
-    object-fit: cover;
-}
-
-.card-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.card img {
-    height: 200px;
-    object-fit: cover;
-}
-
-.rental-hits {
-    padding: 10px 0;
-}
-
-.rental-hits h2 {
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
 .btn_rent img {
     width: 40px;
     height: 40px;
     transition: transform 0.3s ease
 }
 
-.btn_rent img:hover  {
+.btn_rent img:hover {
     transform: scale(1.20);
 }
 
@@ -58,32 +44,23 @@ body{
 
 }
 
-.card {
-    margin: 0;
-    border-radius: 30px;
-}
-
-.price-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-.rental-prices {
-    display: flex;
-    justify-content: space-between;
-}
-.rental-prices p {
-    margin: 0;
-}
-.rental-prices, .price-values {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
 .nav-links {
     display: flex;
     gap: 20px;
+}
+
+header {
+    width: 100%; /* Ширина на весь экран */
+    position: relative; /* Для правильного позиционирования вложенных элементов */
+    z-index: 1; /* Убедиться, что шапка выше других элементов */
+}
+
+.navbar {
+    width: 100%; /* Ширина на весь экран для navbar */
+}
+
+.bg-dark {
+    background-color: #343a40 !important; /* Цвет фона, если требуется */
 }
 
 .nav-link {
@@ -113,3 +90,25 @@ img {
     height: auto;
 }
 
+.table td, .table th {
+    padding: .50rem;
+    vertical-align: middle;
+    text-align: center;
+    background-color: white;
+}
+
+.tr-text {
+    position: sticky; /* Фиксируем элемент */
+    left: 0;         /* Привязываем к левому краю */
+    z-index: 1;      /* Убедимся, что столбец выше других */
+    font-weight: bold;
+    background-color: white;
+}
+/* Добавляем стиль для остальных ячеек */
+.table-responsive {
+    overflow-x: auto; /* Прокрутка по горизонтали */
+}
+
+table th, table td {
+    min-width: 100px; /* Минимальная ширина ячеек */
+}
