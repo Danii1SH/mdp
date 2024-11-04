@@ -24,23 +24,39 @@
                     </li>
                 </ul>
             </div>
-        <div class="col-md-4 text-right">
-            <a href="/authorization/" class="user_profile">
-                <img src="/img/header_icon/user_icon.png" alt="Профиль">
-            </a>
-        </div>
+            <div class="col-md-4 text-right">
+                <a href="/authorization/" class="user_profile">
+                    <img src="/img/header_icon/user_icon.png" alt="Профиль" style="width: 30px; height: 30px;">
+                </a>
+            </div>
         </nav>
     </div>
 </header>
 
-
-
-
-
-</body>
+<main class="container mt-4">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+                <th>Column 4</th>
+                <th>Column 5</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="row : ${data}">
+                <td th:each="cell : ${row}" th:text="${cell != null ? cell : ''}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 
 </html>
