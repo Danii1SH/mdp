@@ -29,34 +29,9 @@ body {
     margin-right: 10px;
 }
 
-.btn_rent img {
-    width: 40px;
-    height: 40px;
-    transition: transform 0.3s ease
-}
-
-.btn_rent img:hover {
-    transform: scale(1.20);
-}
-
-.card-container {
-    padding: 10px;
-
-}
-
 .nav-links {
     display: flex;
     gap: 20px;
-}
-
-header {
-    width: 100%; /* Ширина на весь экран */
-    position: relative; /* Для правильного позиционирования вложенных элементов */
-    z-index: 1; /* Убедиться, что шапка выше других элементов */
-}
-
-.navbar {
-    width: 100%; /* Ширина на весь экран для navbar */
 }
 
 .bg-dark {
@@ -99,12 +74,12 @@ img {
 
 .tr-text {
     position: sticky; /* Фиксируем элемент */
-    left: 0;         /* Привязываем к левому краю */
-    z-index: 1;      /* Убедимся, что столбец выше других */
+    left: 0;
+    z-index: 1;
     font-weight: bold;
     background-color: white;
 }
-/* Добавляем стиль для остальных ячеек */
+
 .table-responsive {
     overflow-x: auto; /* Прокрутка по горизонтали */
 }

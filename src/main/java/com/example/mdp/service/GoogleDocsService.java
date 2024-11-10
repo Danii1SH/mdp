@@ -19,8 +19,7 @@ public class GoogleDocsService {
 
     private final Docs docsService;
 
-    // ID вашего документа Google Docs
-    private static final String DOCUMENT_ID = "1vASNSBK-bEW3WaVbjDbd_qBU2PKlTRw5PB198LummEQ"; // Замените на ваш ID документа
+
     private static final String APPLICATION_NAME = "mdp";
 
     public GoogleDocsService() throws IOException {
@@ -43,9 +42,9 @@ public class GoogleDocsService {
                 .build();
     }
 
-    // Метод для получения текста из конкретной ячейки (например, первой ячейки первой таблицы)
-    public List<String> getTableCellsText(List<int[]> cellCoordinates) throws IOException {
-        Document document = docsService.documents().get(DOCUMENT_ID).execute();
+    // Метод для получения текста из конкретных ячеек таблицы, принимает ID документа как параметр
+    public List<String> getTableCellsText(String documentId, List<int[]> cellCoordinates) throws IOException {
+        Document document = docsService.documents().get(documentId).execute();
         List<StructuralElement> content = document.getBody().getContent();
 
         List<String> cellTexts = new ArrayList<>();

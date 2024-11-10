@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Compare Results</title>
+    <link rel="stylesheet" href="/css/compare.css">
+</head>
+<body>
+<h1>Результаты сравнения</h1>
+<table border="1">
+    <tr>
+        <th>#</th>
+        <th>Название дисциплины</th>
+        <th>Текст ошибок</th>
+    </tr>
+    <th:block th:each="error, iterStat : ${errors}">
+        <tr>
+            <td th:text="${iterStat.count}">1</td>
+            <td th:text="${error.disciplineName}">Название дисциплины</td>
+            <td th:text="${error.errorText}">Ошибка</td>
+        </tr>
+    </th:block>
+</table>
+
+<!-- Форма для скачивания PDF -->
+<form action="/pdf/download" method="post">
+    <!-- Преобразуем объект errors в JSON и отправляем как скрытое поле -->
+    <input type="hidden" name="errors" th:value="${errors}" />
+    <button type="submit">Сохранить</button>
+</form>
+
+</body>
+</html>

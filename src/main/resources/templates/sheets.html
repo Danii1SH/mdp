@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная страница</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/home.css">
-    <link rel="icon" href="/img/header_icon/favicon_bicycle.png" type="image/png">
+    <link rel="stylesheet" href="/css/sheets.css">
 </head>
 
 <body>
@@ -47,7 +46,7 @@
             </thead>
             <tbody>
             <tr th:each="row, rowStat : ${data}" th:if="${row != null && !row.isEmpty()}">
-                <td class="tr-text" th:text="${rowStat.index + 1}"></td> <!-- Порядковый номер строки -->
+                <td class="tr-text" th:text="${rowStat.index + 1} + Y"></td> <!-- Порядковый номер строки -->
                 <td th:each="cell : ${row}" th:text="${cell != null ? cell : ''}"></td>
             </tr>
             </tbody>
