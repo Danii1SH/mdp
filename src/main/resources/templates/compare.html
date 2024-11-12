@@ -11,20 +11,19 @@
     <tr>
         <th>#</th>
         <th>Название дисциплины</th>
-        <th>Текст ошибок</th>
+        <th>Описание ошибки</th>
     </tr>
     <th:block th:each="error, iterStat : ${errors}">
         <tr>
             <td th:text="${iterStat.count}">1</td>
-            <td th:text="${error.disciplineName}">Название дисциплины</td>
-            <td th:text="${error.errorText}">Ошибка</td>
+            <td th:text="${#strings.contains(error, ':') ? error.split(':')[1] : 'Неизвестно'}">Название дисциплины</td>
+            <td th:text="${#strings.contains(error, ':') ? error.split(':')[0] : 'Неизвестное описание'}">Описание ошибки</td>
+
         </tr>
     </th:block>
 </table>
 
-<!-- Форма для скачивания PDF -->
-<form action="/pdf/download" method="post">
-    <!-- Преобразуем объект errors в JSON и отправляем как скрытое поле -->
+<form action="/excel/download" method="post">
     <input type="hidden" name="errors" th:value="${errors}" />
     <button type="submit">Сохранить</button>
 </form>

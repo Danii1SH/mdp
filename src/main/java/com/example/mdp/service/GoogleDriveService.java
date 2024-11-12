@@ -43,7 +43,6 @@ public class GoogleDriveService {
                 .build();
     }
 
-    // Метод для получения списка документов из папки
     public List<String> getDocumentsInFolder(String folderId) throws IOException {
         List<String> documentIds = new ArrayList<>();
         FileList result = driveService.files().list()
@@ -56,10 +55,5 @@ public class GoogleDriveService {
         }
 
         return documentIds;
-    }
-
-    // Метод для получения документов из папки с аннотациями
-    public List<String> getDocumentsInAnnotationFolder() throws IOException {
-        return getDocumentsInFolder(ANNOTATION_FOLDER_ID);
     }
 }
