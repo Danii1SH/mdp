@@ -12,7 +12,6 @@ public class CompetencyChecker {
             "ПК-1", "ПК-2", "ПК-3", "ПК-4", "ПКс-3"
     );
 
-    // Метод для поиска компетенций в тексте
     public static List<String> findCompetenciesInText(String text) {
         List<String> foundCompetencies = new ArrayList<>();
         for (String competency : COMPETENCIES) {

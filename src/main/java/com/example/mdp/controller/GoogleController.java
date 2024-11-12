@@ -1,12 +1,10 @@
 package com.example.mdp.controller;
 
 import com.example.mdp.enums.ControlForm;
-import com.example.mdp.model.ComparisonError;
 import com.example.mdp.service.*;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.Data;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +22,6 @@ import static com.example.mdp.service.GoogleDriveService.ANNOTATION_FOLDER_ID;
 @Controller
 public class GoogleController {
 
-    private final PDFService pdfService;
     private final GoogleSheetsService googleSheetsService;
     private final GoogleDocsService googleDocsService;
     private final GoogleDriveService googleDriveService;
@@ -33,19 +30,19 @@ public class GoogleController {
 
     @GetMapping("/compare")
     public String compareData(Model model) throws IOException {
-        List<ComparisonError> errors = new ArrayList<>();
+        List<String> errors = new ArrayList<>();
         List<String> documentIds;
 
         try {
             documentIds = googleDriveService.getDocumentsInFolder(ANNOTATION_FOLDER_ID);
         } catch (IOException e) {
-            errors.add(new ComparisonError("Ошибка", "Ошибка при получении документов: " + e.getMessage()));
+            errors.add("Ошибка при получении документов: " + e.getMessage());
             model.addAttribute("errors", errors);
             return "compare";
         }
 
         if (documentIds.isEmpty()) {
-            errors.add(new ComparisonError("Ошибка", "Нет документов в папке."));
+            errors.add("Нет документов в папке");
             model.addAttribute("errors", errors);
             return "compare";
         }
@@ -56,7 +53,7 @@ public class GoogleController {
         try {
             sheetData = googleSheetsService.getSheetData(SHEET_NAME, range);
         } catch (IOException e) {
-            errors.add(new ComparisonError("Ошибка", "Ошибка при получении данных из Google Sheets: " + e.getMessage()));
+            errors.add("Ошибка при получении данных из Google Sheets: " + e.getMessage());
             model.addAttribute("errors", errors);
             return "compare";
         }
@@ -82,12 +79,12 @@ public class GoogleController {
             try {
                 docValues = googleDocsService.getTableCellsText(documentId, docCoordinates);
             } catch (IOException e) {
-                errors.add(new ComparisonError("Документ " + documentId, "Ошибка при получении данных из документа: " + e.getMessage()));
+                errors.add("Ошибка при получении данных из документа: " + documentId + e.getMessage());
                 continue;
             }
 
             if (docValues.size() < 5) {
-                errors.add(new ComparisonError("Документ " + documentId, "Недостаточно данных в документе."));
+                errors.add("Недостаточно данных в документе: " + documentId);
                 continue;
             }
 
@@ -108,15 +105,15 @@ public class GoogleController {
                 List<String> sheetCompetencies = CompetencyChecker.findCompetenciesInText(sheetCompetencyText);
 
                 if (!docCreditUnits.equals(sheetCreditUnits)) {
-                    errors.add(new ComparisonError(docDiscipline, "Несоответствие в зачетных единицах."));
+                    errors.add("Несоответствие в зачетных единицах: " + docDiscipline);
                 }
 
                 if (!docHours.equals(sheetHours)) {
-                    errors.add(new ComparisonError(docDiscipline, "Несоответствие в часах."));
+                    errors.add("Несоответствие в часах: " + docDiscipline);
                 }
 
                 if (!docCompetencies.containsAll(sheetCompetencies) || !sheetCompetencies.containsAll(docCompetencies)) {
-                    errors.add(new ComparisonError(docDiscipline, "Несоответствие в компетенциях."));
+                    errors.add("Несоответствие в компетенциях: " + docDiscipline);
                 }
 
                 Map<ControlForm, Boolean> sheetControlForms = getControlFormsFromSheet(sheetRow);
@@ -124,10 +121,10 @@ public class GoogleController {
                 String controlFormsComparison = compareControlForms(sheetControlForms, docControlForms);
 
                 if (!controlFormsComparison.isEmpty()) {
-                    errors.add(new ComparisonError(docDiscipline, "Несоответствие форм контроля: " + controlFormsComparison));
+                    errors.add("Несоответствие форм контроля: " + docDiscipline);
                 }
             } else {
-                errors.add(new ComparisonError(docDiscipline, "Дисциплина не найдена в Google Sheets."));
+                errors.add("Не найдена в Google Sheet или различие в написании: " + docDiscipline);
             }
         }
 
@@ -169,16 +166,5 @@ public class GoogleController {
             }
         }
         return result.toString().trim();
-    }
-
-    @PostMapping("/pdf/download")
-    public void downloadPdf(@RequestParam List<ComparisonError> errors, HttpServletResponse response) throws IOException {
-        // Генерация PDF
-        byte[] pdfContent = pdfService.generatePdf(errors);
-
-        // Устанавливаем заголовки для скачивания PDF
-        response.setContentType("application/pdf");
-        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=error_report.pdf");
-        response.getOutputStream().write(pdfContent);
     }
 }

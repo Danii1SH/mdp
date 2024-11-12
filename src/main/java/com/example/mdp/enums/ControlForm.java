@@ -18,7 +18,6 @@ public enum ControlForm {
         return docValue;
     }
 
-    // Метод для поиска соответствующего enum по строке
     public static ControlForm fromString(String text) {
         for (ControlForm form : ControlForm.values()) {
             if (form.getDocValue().equalsIgnoreCase(text.trim())) {

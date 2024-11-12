@@ -58,7 +58,6 @@ public class GoogleSheetsService {
                 .build();
     }
 
-    // Метод для получения данных из конкретного листа и диапазона
     public List<List<Object>> getSheetData(String sheetName, String range) throws IOException {
         String fullRange = sheetName + "!" + range;
         ValueRange response = sheetsService.spreadsheets().values()
