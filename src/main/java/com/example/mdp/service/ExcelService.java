@@ -1,7 +1,7 @@
 package com.example.mdp.service;
 
-import com.example.mdp.model.ComparisonError;
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class PDFService {
 
-    public byte[] generatePdf(List<ComparisonError> errors) throws IOException {
+    public byte[] generatePdf(List<String> errors) throws IOException {
         // Создание нового документа PDF
         Document document = new Document();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -25,22 +25,31 @@ public class PDFService {
             // Открываем документ для записи
             document.open();
 
-            // Добавляем заголовок
-            document.add(new Paragraph("Результаты сравнения"));
+            // Используем шрифт Times New Roman
+            BaseFont baseFont = BaseFont.createFont("resources/Fonts/times.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            Font font = new Font(baseFont, 12);
+
+            // Добавляем заголовок с правильным шрифтом
+            document.add(new Paragraph("Результаты сравнения", font));
 
             PdfPTable table = new PdfPTable(3);
 
-            // Добавляем заголовки таблицы
-            table.addCell("№");
-            table.addCell("Название дисциплины");
-            table.addCell("Текст ошибок");
+            // Добавляем заголовки таблицы с правильным шрифтом
+            table.addCell(new Phrase("#", font));
+            table.addCell(new Phrase("Название дисциплины", font));
+            table.addCell(new Phrase("Описание ошибки", font));
 
             // Заполняем таблицу данными из списка ошибок
             for (int i = 0; i < errors.size(); i++) {
-                ComparisonError error = errors.get(i);
-                table.addCell(String.valueOf(i + 1));  // Номер ошибки
-                table.addCell(error.getDisciplineName());  // Название дисциплины
-                table.addCell(error.getErrorText());  // Описание ошибки
+                String error = errors.get(i);
+                String[] parts = error.split(":", 2);
+
+                String disciplineName = parts.length > 0 ? parts[0].trim() : "Неизвестно";
+                String errorText = parts.length > 1 ? parts[1].trim() : "Без описания ошибки";
+
+                table.addCell(new Phrase(String.valueOf(i + 1), font));  // Номер ошибки
+                table.addCell(new Phrase(disciplineName, font));  // Название дисциплины
+                table.addCell(new Phrase(errorText, font));  // Описание ошибки
             }
 
             // Добавляем таблицу в документ
@@ -56,4 +65,5 @@ public class PDFService {
         // Возвращаем сгенерированный PDF как массив байтов
         return outputStream.toByteArray();
     }
+
 }
