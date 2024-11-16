@@ -1,0 +1,103 @@
+body {
+    background-color: #262A3C;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 15px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+.navbar-nav {
+    gap: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link {
+    position: relative;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #5B6284;
+    border-radius: 30px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    transform: scale(1.05);
+}
+
+.bg-dark {
+    background-color: #000000 !important;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 85vh;
+    max-width: 95vw;
+    margin: 10px 0;
+    background-color: #5B6284;
+}
+
+.table th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #000000;
+    color: white;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    text-align: center;
+    padding: .2rem;
+}
+
+.table th:first-child,
+.table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 3;
+    background-color: #000000;
+    color: white;
+    font-weight: bold;
+    border-right: 2px solid #ddd;
+    text-align: center;
+    padding: .2rem;
+}
+
+.table th:first-child {
+    z-index: 4;
+}
+
+.table td, .table th {
+    min-width: 100px;
+    padding: .2rem;
+    vertical-align: middle;
+    text-align: center;
+    background-color: #5B6284;
+    color: #fff;
+}
+
+.table thead tr {
+    background-color: #000000;
+    color: #fff;
+}
+
+.tr-text {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    font-weight: bold;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    border-right: 2px solid #ddd;
+    padding: .5rem;
+}

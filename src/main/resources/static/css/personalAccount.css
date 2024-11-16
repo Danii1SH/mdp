@@ -1,42 +1,59 @@
 body {
-    background-color: #ddc8b9;
+    background-color: #262A3C;
+    color: #ffffff;
 }
 
-.btn_basket {
+.container p span {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
     display: inline-block;
-    margin: 0;
 }
 
-.btn_basket img {
-    width: 40px;
-    height: 40px;
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+.navbar-nav {
+    gap: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .nav-link {
     position: relative;
-    color: #007bff;
     text-decoration: none;
-    padding: 5px;
+    padding: 10px 20px;
+    background-color: #5B6284;
+    border-radius: 30px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.nav-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    background-color: #ddc8b9;
-    transition: width 0.3s;
+.nav-link:hover {
+    transform: scale(1.05);
 }
 
-.nav-link:hover::after {
-    width: 100%;
+.bg-dark {
+    background-color: #000000 !important;
 }
 
+.data-box {
+    background-color: #5B6284;
+    color: #ffffff;
+    border-radius: 30px;
+    padding: 20px 30px;
+    margin: 20px auto;
+    max-width: 100vw;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    text-align: left;
+}
 
+.data-box h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
 
-
-
-
-
+.data-box p {
+    font-size: 18px;
+    margin: 10px 0;
+}

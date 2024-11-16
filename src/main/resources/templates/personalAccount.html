@@ -12,28 +12,43 @@
 <header class="bg-dark py-3">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Главная</a>
+                        <a class="nav-link" href="/">УЧЕБНЫЙ ПЛАН</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/competency">МАТРИЦА КОМПЕТЕНЦИЙ</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/compare">ПРОВЕРКА</a>
                     </li>
                 </ul>
             </div>
             <div class="col-md-4 text-right">
-                <a href="/personalAccount/logout" class="btn btn-primary">Выйти</a>
+                <a href="/personalAccount/logout" class="exit-icon">
+                    <img src="/img/header_icon/exit.png" alt="Выход" style="width: 35px; height: 35px;">
+                </a>
             </div>
         </nav>
     </div>
 </header>
+
 <div class="container mt-5">
-    <h1 class="text-left">Добро пожаловать <span th:text="${currentUser.firstName}"></span> <span th:text="${currentUser.secondName}"></span>!</h1>
-    <p class="text-left" style="margin-top: 20px;">Почта: <span th:text="${currentUser.email}"></span></p>
-    <p class="text-left">Пол: <span th:text="${currentUser.gender}"></span></p>
-    <p class="text-left">Дата регистрации: <span th:text="${currentUser.creationDate}"></span></p>
-    <form th:action="@{/personalAccount/}" method="post" th:object="${currentUser}"></form>
+    <h1>
+        Добро пожаловать
+        <span th:text="${currentUser.firstName}"></span>
+        <span th:text="${currentUser.secondName}"></span>!
+    </h1>
+    <div class="data-box text-left">
+        <p>Почта: <span th:text="${currentUser.email}"></span></p>
+        <p>Пол: <span th:text="${currentUser.gender}"></span></p>
+        <p>Дата регистрации: <span th:text="${currentUser.creationDate}"></span></p>
+    </div>
 </div>
 </body>
 </html>

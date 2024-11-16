@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница</title>
+    <title>Матрица конмпетенций</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/sheets.css">
+    <link rel="stylesheet" href="/css/competency.css">
 </head>
 
 <body>
@@ -20,13 +20,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Главная</a>
+                        <a class="nav-link" href="/">УЧЕБНЫЙ ПЛАН</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/competency">МАТРИЦА КОМПЕТЕНЦИЙ</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/compare">ПРОВЕРКА</a>
                     </li>
                 </ul>
             </div>
             <div class="col-md-4 text-right">
                 <a href="/authorization/" class="user_profile">
-                    <img src="/img/header_icon/user_icon.png" alt="Профиль" style="width: 30px; height: 30px;">
+                    <img src="/img/header_icon/user_icon.png" alt="Профиль" style="width: 35px; height: 35px;">
                 </a>
             </div>
         </nav>
@@ -41,7 +47,7 @@
                 <th class="tr-text">#</th> <!-- Порядковый номер -->
                 <!-- Заголовки столбцов с буквами -->
                 <th th:each="colIndex : ${#numbers.sequence(0, data[0].size() - 1)}"
-                    th:text="${colIndex + 1} + X"></th>
+                    th:text="${colIndex + 1} + X" style="background-color: #000000;"></th>
             </tr>
             </thead>
             <tbody>

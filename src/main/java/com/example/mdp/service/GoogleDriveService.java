@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class GoogleDriveService {
     public static final String ANNOTATION_FOLDER_ID = "1WC-bGmLWhEYM74ev9UvihcVf08ffgcn4";
 
 
-    public GoogleDriveService() throws IOException, GeneralSecurityException {
+    public GoogleDriveService() throws IOException {
         GoogleCredentials credentials = getCredentials();
         this.driveService = getDriveService(credentials);
     }
