@@ -1,0 +1,121 @@
+body {
+    background-color: #262A3C;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 15px;
+}
+
+.user_profile {
+    display: inline-block;
+    margin: 0;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+.navbar-nav {
+    gap: 10px;
+}
+
+.nav-link {
+    position: relative;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #5B6284;
+    border-radius: 30px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    transform: scale(1.05);
+    color: #ffffff;
+}
+
+
+.bg-dark {
+    background-color: #000000 !important;
+}
+
+
+table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: center;
+    padding: 12px 15px;
+}
+
+th {
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+td {
+    background-color: #5B6284;
+    color: #ffffff;
+}
+
+td:first-child,
+th:first-child {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+table tr:nth-child(even) {
+    background-color: #4e5366;
+}
+
+table tr:hover {
+    background-color: #3d4356;
+}
+
+
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #5B6284;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #6d7292;
+}
+
+button:active {
+    transform: scale(1);
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    margin-top: 30px;
+}

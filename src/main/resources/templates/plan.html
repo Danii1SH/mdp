@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
     <meta charset="UTF-8">
-    <title>Результаты сравнения</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Учебный план</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/compare.css">
+    <link rel="stylesheet" href="/css/plan.css">
 </head>
+
 <body>
 <header class="bg-dark py-3">
     <div class="container-fluid">
@@ -36,27 +39,30 @@
     </div>
 </header>
 
-<h1>РЕЗУЛЬТАТЫ СРАВНЕНИЯ</h1>
-<table border="1">
-    <tr>
-        <th>#</th>
-        <th>Название дисциплины</th>
-        <th>Описание ошибки</th>
-    </tr>
-    <th:block th:each="error, iterStat : ${errors}">
-        <tr>
-            <td th:text="${iterStat.count}">1</td>
-            <td th:text="${#strings.contains(error, ':') ? error.split(':')[1] : 'Неизвестно'}">Название дисциплины</td>
-            <td th:text="${#strings.contains(error, ':') ? error.split(':')[0] : 'Неизвестное описание'}">Описание ошибки</td>
+<main class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="tr-text">#</th> <!-- Порядковый номер -->
+                <!-- Заголовки столбцов с буквами -->
+                <th class="th-text" th:each="colIndex : ${#numbers.sequence(0, data[0].size() - 1)}"
+                    th:text="${colIndex + 1} + X" style="background-color: #000000;"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="row, rowStat : ${data}" th:if="${row != null && !row.isEmpty()}">
+                <td class="tr-text" th:text="${rowStat.index + 1} + Y"></td> <!-- Порядковый номер строки -->
+                <td th:each="cell : ${row}" th:text="${cell != null ? cell : ''}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 
-        </tr>
-    </th:block>
-</table>
-
-<form action="/excel/download" method="post">
-    <input type="hidden" name="errors" th:value="${errors}" />
-    <button type="submit">СОХРАНИТЬ</button>
-</form>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

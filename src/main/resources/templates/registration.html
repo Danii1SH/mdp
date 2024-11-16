@@ -3,29 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Page</title>
+    <title>Регистрация</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <link rel="stylesheet" href="/css/authorization.css">
+    <link rel="stylesheet" href="/css/registration.css">
     <link rel="icon" href="/img/header_icon/favicon_bicycle.png" type="image/png">
 </head>
 <body>
 <header class="bg-dark py-3">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Главная</a>
+                        <a class="nav-link" href="/">УЧЕБНЫЙ ПЛАН</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/competency">МАТРИЦА КОМПЕТЕНЦИЙ</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/compare">ПРОВЕРКА</a>
                     </li>
                 </ul>
             </div>
             <div class="col-md-4 text-right">
                 <a href="/authorization/" class="user_profile">
-                    <img src="/img/header_icon/user_icon.png" alt="Профиль">
+                    <img src="/img/header_icon/user_icon.png" alt="Профиль" style="width: 35px; height: 35px;">
                 </a>
             </div>
         </nav>
@@ -37,7 +44,7 @@
             <div class="card">
                 <div class="card-body">
                     <form class="registration-form mx-auto text-center" th:action="@{/registration/addUser}" method="post" th:object="${captcha}">
-                        <h2 class="mb-4">Регистрация</h2>
+                        <h2 class="mb-4">РЕГИСТРАЦИЯ</h2>
                         <div class="form-group">
                             <input type="text" id="firstName" class="form-control" th:field="${user.firstName}" placeholder="Имя" pattern="[А-Яа-яA-Za-z]{2,15}" title="Пожалуйста введите корректное имя (2-15 символов русской раскладки)" required>
                         </div>
@@ -65,19 +72,13 @@
                                 <label for="female">Жен.</label>
                             </div>
                         </div>
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" name="accept_rules" id="accept_rules" required>
-                            <label class="form-check-label" for="accept_rules">Я соглашаюсь на обработку персональных данных</label>
-                        </div>
-
                         <div>
                             <input type="image" id="image" th:src="*{'data:realCaptcha/jpg;base64,'+ realCaptcha}"/>
                             <input type="hidden" th:field="*{hiddenCaptcha}">
-                            <br><lable for = "captchatext"> Введите текст капчи </lable></br>
-                            <input type="text" id="captchatext" th:field="*{captcha}"/>
+                            <input type="text" id="captchatext" class="form-control mb-4" placeholder="Введите текст капчи" th:field="*{captcha}"/>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться</button>
+                        <button type="submit" class="btn btn-primary btn-block">ЗАРЕГЕСТРИРОВАТЬСЯ</button>
                         <p class="text-center my-3">Уже есть аккаунт? Нажмите <a href="/authorization/">здесь</a>, чтобы войти.</p>
 
                         <div th:if="${error!=null}">
