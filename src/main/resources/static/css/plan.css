@@ -1,6 +1,6 @@
-/* Основные стили для страницы */
 body {
     background-color: #262A3C;
+    overflow-x: hidden;
 }
 
 .container {
@@ -10,8 +10,7 @@ body {
     width: 100vw;
     max-width: 100%;
     padding: 0;
-    margin-left: 15px;
-    margin-right: 15px;
+    margin: 15px 15px;
 }
 
 .user_profile {
@@ -39,6 +38,10 @@ body {
 
 .nav-link:hover {
     transform: scale(1.05);
+}
+
+.nav-link.active-plan {
+    background-color: #262A3C;
 }
 
 .bg-dark {

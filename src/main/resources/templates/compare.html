@@ -23,7 +23,7 @@
                         <a class="nav-link" href="/competency">МАТРИЦА КОМПЕТЕНЦИЙ</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="/compare">ПРОВЕРКА</a>
+                        <a class="nav-link active-compare" href="/compare">ПРОВЕРКА</a>
                     </li>
                 </ul>
             </div>
@@ -37,6 +37,10 @@
 </header>
 
 <h1>РЕЗУЛЬТАТЫ СРАВНЕНИЯ</h1>
+<form action="/excel/download" method="post" class="save-button-form">
+    <input type="hidden" name="errors" th:value="${errors}" />
+    <button type="submit">СОХРАНИТЬ</button>
+</form>
 <table border="1">
     <tr>
         <th>#</th>
@@ -52,11 +56,6 @@
         </tr>
     </th:block>
 </table>
-
-<form action="/excel/download" method="post">
-    <input type="hidden" name="errors" th:value="${errors}" />
-    <button type="submit">СОХРАНИТЬ</button>
-</form>
 
 </body>
 </html>
