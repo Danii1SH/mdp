@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">УЧЕБНЫЙ ПЛАН</a>
+                        <a class="nav-link active-plan" href="/">УЧЕБНЫЙ ПЛАН</a>
                     </li>
                     <li>
                         <a class="nav-link" href="/competency">МАТРИЦА КОМПЕТЕНЦИЙ</a>
@@ -44,15 +44,14 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th class="tr-text">#</th> <!-- Порядковый номер -->
-                <!-- Заголовки столбцов с буквами -->
+                <th class="tr-text">#</th>
                 <th class="th-text" th:each="colIndex : ${#numbers.sequence(0, data[0].size() - 1)}"
                     th:text="${colIndex + 1} + X" style="background-color: #000000;"></th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="row, rowStat : ${data}" th:if="${row != null && !row.isEmpty()}">
-                <td class="tr-text" th:text="${rowStat.index + 1} + Y"></td> <!-- Порядковый номер строки -->
+                <td class="tr-text" th:text="${rowStat.index + 1} + Y"></td>
                 <td th:each="cell : ${row}" th:text="${cell != null ? cell : ''}"></td>
             </tr>
             </tbody>

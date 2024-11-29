@@ -7,6 +7,7 @@ body {
     color: #ffffff;
 }
 
+
 .navbar-nav {
     gap: 10px;
     transition: transform 0.3s ease, background-color 0.3s ease;
@@ -38,6 +39,8 @@ body {
 .card {
     background-color: #000000;
     color: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     border: none;
 }
 
@@ -63,11 +66,13 @@ body {
 .btn-primary {
     background-color: #5B6284;
     border-color: #5B6284;
+    border-radius: 30px;
 }
 
 .btn-primary:hover {
     background-color: #6d7292;
     border-color: #6d7292;
+    color: rgba(255, 255, 255, .5);
 }
 
 

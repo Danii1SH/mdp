@@ -58,7 +58,8 @@ public class GoogleController {
 
         for (List<Object> row : sheetData) {
             if (row.size() > 2) {
-                sheetDataMap.put(row.get(2).toString(), row);
+                String disciplineName = normalizeString(row.get(2).toString());
+                sheetDataMap.put(disciplineName, row);
             }
         }
 
@@ -66,7 +67,7 @@ public class GoogleController {
                 new int[]{0, 1, 1},  // Наименование дисциплины
                 new int[]{0, 5, 1},  // Зачетные единицы
                 new int[]{0, 5, 2},  // Часы
-                new int[]{0, 12, 0}, // Компетенции
+                new int[]{0, 14, 0}, // Компетенции
                 new int[]{0, 6, 1}   // Формы контроля
         );
 
@@ -84,7 +85,7 @@ public class GoogleController {
                 continue;
             }
 
-            String docDiscipline = docValues.get(0);
+            String docDiscipline = normalizeString(docValues.get(0));
             String docCreditUnits = docValues.get(1);
             String docHours = docValues.get(2);
             String docCompetencyText = docValues.get(3);
@@ -127,6 +128,17 @@ public class GoogleController {
         model.addAttribute("errors", errors);
         return "compare";
     }
+
+    private String normalizeString(String input) {
+        if (input == null || input.trim().isEmpty()) {
+            return "";
+        }
+        input = input.trim();
+        return input.length() > 1
+                ? input.substring(0, 1) + input.substring(1).toLowerCase()
+                : input.toUpperCase();
+    }
+
 
     private Map<ControlForm, Boolean> getControlFormsFromSheet(List<Object> row) {
         Map<ControlForm, Boolean> controlFormsMap = new HashMap<>();
