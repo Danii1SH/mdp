@@ -2,6 +2,7 @@ body{
     background-color: #262A3C;
 }
 
+
 .card{
     background-color: #000;
     color: #fff;
@@ -54,12 +55,16 @@ body{
 }
 
 .btn-primary:active {
-    background-color: #4A516E;
-    border-color: #4A516E;
+    background-color: #4A516E !important;
+    border-color: #4A516E !important;
+}
+
+.btn-primary:focus {
+    box-shadow: none !important;
 }
 
 .form-control {
-    background-color: #5B6284; /
+    background-color: #5B6284;
     color: #ffffff;
     border: 1px solid #5B6284;
     border-radius: 5px;
@@ -73,10 +78,17 @@ body{
     background-color: #5B6284;
     border-color: #ffffff;
     outline: none;
+    box-shadow: none;
 }
 
-a{
+a {
     color: #5B6284;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #6d7292;
+
 }
 
 
